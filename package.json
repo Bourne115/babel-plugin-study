@@ -1,0 +1,28 @@
+{
+  "name": "@qile/babel-plugin-study",
+  "version": "1.0.0",
+  "description": "学习babel插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bourne115/babel-plugin-study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bourne115/babel-plugin-study/issues"
+  },
+  "homepage": "https://github.com/Bourne115/babel-plugin-study#readme",
+  "devDependencies": {
+    "@babel/code-frame": "^7.16.7",
+    "@babel/core": "^7.17.10",
+    "@babel/generator": "^7.17.10",
+    "@babel/parser": "^7.17.10",
+    "@babel/template": "^7.16.7",
+    "@babel/traverse": "^7.17.10",
+    "@babel/types": "^7.17.10"
+  }
+}

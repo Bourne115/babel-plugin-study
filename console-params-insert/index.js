@@ -13,6 +13,9 @@ const { code } = transformSync(sourceCode, {
     sourceType: "unambiguous",
     plugins: ["jsx"],
   },
+  generatorOpts: {
+    comments: false
+  },
   filename
 })
 

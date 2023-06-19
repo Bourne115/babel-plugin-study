@@ -34,9 +34,14 @@ const ast = parser.parse(sourceCode, {
   plugins: ["jsx"],
 })
 
+// parser.parseExpression()
+
 const targetCalleeNames = ["log", "info", "warning", "error", "debug"].map(
   (n) => `console.${n}`
 )
+
+console.log(ast)
+
 
 traverse(ast, {
   CallExpression(path, state) {
@@ -63,8 +68,15 @@ traverse(ast, {
       }
     }
   },
+  FunctionDeclaration: {
+    enter(path, state) {
+
+    }
+  }
 })
 
-const { code, map } = generate(ast)
+const { code, map } = generate(ast, {
+  comments: true
+})
 
-console.log(code)
+// console.log(code)

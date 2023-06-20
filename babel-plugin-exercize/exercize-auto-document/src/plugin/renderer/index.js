@@ -1,5 +1,5 @@
 module.exports = {
-    html: require('./html'),
-    markdown: require('./markdown'),
-    json: require('./json')
+  html: require('./html'),
+  markdown: require('./markdown'),
+  json: require('./json')
 }

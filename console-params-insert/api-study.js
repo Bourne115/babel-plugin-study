@@ -1,10 +1,8 @@
-
-
-const parser = require("@babel/parser")
-const traverse = require("@babel/traverse").default
-const generate = require("@babel/generator").default
-const types = require("@babel/types")
-const template = require("@babel/template").default
+const parser = require('@babel/parser')
+const traverse = require('@babel/traverse').default
+const generate = require('@babel/generator').default
+const types = require('@babel/types')
+const template = require('@babel/template').default
 
 const sourceCode = `
     console.log('hi');
@@ -30,25 +28,24 @@ const sourceCode = `
 `
 
 const ast = parser.parse(sourceCode, {
-  sourceType: "unambiguous",
-  plugins: ["jsx"],
+  sourceType: 'unambiguous',
+  plugins: ['jsx']
 })
 
 // parser.parseExpression()
 
-const targetCalleeNames = ["log", "info", "warning", "error", "debug"].map(
+const targetCalleeNames = ['log', 'info', 'warning', 'error', 'debug'].map(
   (n) => `console.${n}`
 )
 
 console.log(ast)
-
 
 traverse(ast, {
   CallExpression(path, state) {
     if (path.node.isNew) return
 
     // const { code: calleeName } = generate(path.node.callee)
-    const calleeName = path.get("callee").toString()
+    const calleeName = path.get('callee').toString()
     if (targetCalleeNames.includes(calleeName)) {
       const { line, column } = path.node.loc.start
       // path.node.arguments.unshift(
@@ -69,9 +66,7 @@ traverse(ast, {
     }
   },
   FunctionDeclaration: {
-    enter(path, state) {
-
-    }
+    enter(path, state) {}
   }
 })
 

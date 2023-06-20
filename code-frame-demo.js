@@ -1,4 +1,4 @@
-const { codeFrameColumns } = require("@babel/code-frame")
+const { codeFrameColumns } = require('@babel/code-frame')
 
 const sourceCode = `
    const a = 1 + 2;
@@ -8,12 +8,12 @@ const sourceCode = `
 const res = codeFrameColumns(
   sourceCode,
   {
-    start: { line: 2, column: 6 },
+    start: { line: 2, column: 6 }
     // end: { line: 3, column: 5 },
   },
   {
     highlightCode: true,
-    message: "此处有问题",
+    message: '此处有问题',
     forceColor: true
   }
 )

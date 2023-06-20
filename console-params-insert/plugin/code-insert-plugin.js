@@ -1,4 +1,4 @@
-const targetCalleeNames = ["log", "info", "warning", "error", "debug"].map(
+const targetCalleeNames = ['log', 'info', 'warning', 'error', 'debug'].map(
   (n) => `console.${n}`
 )
 
@@ -10,16 +10,16 @@ const codeInsertPlugin = ({ types, template }, options, dirname) => {
         if (path.node.isNew) return
 
         // const { code: calleeName } = generate(path.node.callee)
-        const calleeName = path.get("callee").toString()
+        const calleeName = path.get('callee').toString()
         if (targetCalleeNames.includes(calleeName)) {
           const { line, column } = path.node.loc.start
           // path.node.arguments.unshift(
           //   types.stringLiteral(`ast-filename: (${line}, ${column})`)
           // )
-          console.log("state", state)
+          console.log('state', state)
           const newNode = template.expression(
             `console.info("${
-              state.filename || "unknown filename"
+              state.filename || 'unknown filename'
             }: (${line}, ${column})-我是通过 babel 插件注入的代码")`
           )()
           /** 把新的节点做个标记 */
@@ -32,10 +32,9 @@ const codeInsertPlugin = ({ types, template }, options, dirname) => {
             path.insertAfter(newNode)
           }
         }
-      },
-    },
+      }
+    }
   }
 }
 
 module.exports = codeInsertPlugin
-

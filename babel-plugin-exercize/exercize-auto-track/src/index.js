@@ -1,22 +1,26 @@
-const { transformFromAstSync } = require('@babel/core');
-const  parser = require('@babel/parser');
-const autoTrackPlugin = require('./plugin/auto-track-plugin');
-const fs = require('fs');
-const path = require('path');
+const { transformFromAstSync } = require('@babel/core')
+const parser = require('@babel/parser')
+const autoTrackPlugin = require('./plugin/auto-track-plugin')
+const fs = require('fs')
+const path = require('path')
 
 const sourceCode = fs.readFileSync(path.join(__dirname, './sourceCode.js'), {
-    encoding: 'utf-8'
-});
+  encoding: 'utf-8'
+})
 
 const ast = parser.parse(sourceCode, {
-    sourceType: 'unambiguous'
-});
+  sourceType: 'unambiguous'
+})
 
 const { code } = transformFromAstSync(ast, sourceCode, {
-    plugins: [[autoTrackPlugin, {
+  plugins: [
+    [
+      autoTrackPlugin,
+      {
         trackerPath: 'tracker'
-    }]]
-});
+      }
+    ]
+  ]
+})
 
-console.log(code);
-
+console.log(code)

@@ -1,11 +1,8 @@
-import b from './b';
+import b from './b'
 
-const aa1 = 1;
-const aa2 = 2;
+const aa1 = 1
+const aa2 = 2
 
-console.log(b);
+console.log(b)
 
-export {
-    aa1,
-    aa2
-}
+export { aa1, aa2 }

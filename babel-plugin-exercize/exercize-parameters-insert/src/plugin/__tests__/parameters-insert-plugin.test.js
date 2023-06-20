@@ -1,15 +1,15 @@
-const pluginTester = require("babel-plugin-tester").default
+const pluginTester = require('babel-plugin-tester').default
 
 pluginTester({
-  plugin: require("../parameters-insert-plugin"),
+  plugin: require('../parameters-insert-plugin'),
   babelOptions: {
     parserOpts: {
-      sourceType: "unambiguous",
-      plugins: ["jsx"],
-    },
+      sourceType: 'unambiguous',
+      plugins: ['jsx']
+    }
   },
   tests: {
-    "console.xx前插入了CallExpression的AST": {
+    'console.xx前插入了CallExpression的AST': {
       code: `
             console.log(1);
         
@@ -26,7 +26,7 @@ pluginTester({
                 }
             }
             `,
-      snapshot: true,
-    },
-  },
+      snapshot: true
+    }
+  }
 })

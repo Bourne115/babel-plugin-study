@@ -1,19 +1,19 @@
-console.log("hi")
+console.log('hi')
 
 function func() {
-  console.info("hola")
+  console.info('hola')
 }
 
 export default class Person {
   say() {
-    console.debug("hello")
+    console.debug('hello')
   }
 
   kill() {
-    console.warning("hello")
+    console.warning('hello')
   }
 
   render() {
-    return <div>{console.error("你好")}</div>
+    return <div>{console.error('你好')}</div>
   }
 }

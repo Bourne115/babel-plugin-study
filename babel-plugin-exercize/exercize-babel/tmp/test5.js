@@ -1,82 +1,82 @@
-const acorn = require("acorn");
+const acorn = require('acorn')
 
-const Parser = acorn.Parser;
+const Parser = acorn.Parser
 
-var literalExtend = function(Parser) {
+var literalExtend = function (Parser) {
   return class extends Parser {
-    parseLiteral (...args) {
-        const node = super.parseLiteral(...args);
-        switch(typeof node.value) {
-            case 'number':
-                node.type = 'NumericLiteral';
-                break;
-            case 'string':
-                node.type = 'StringLiteral';
-                break;
-        }
-        return  node;
+    parseLiteral(...args) {
+      const node = super.parseLiteral(...args)
+      switch (typeof node.value) {
+        case 'number':
+          node.type = 'NumericLiteral'
+          break
+        case 'string':
+          node.type = 'StringLiteral'
+          break
+      }
+      return node
     }
   }
 }
-const newParser = Parser.extend(literalExtend);
+const newParser = Parser.extend(literalExtend)
 
-
-const astDefinationsMap = new Map();
+const astDefinationsMap = new Map()
 
 astDefinationsMap.set('Program', {
-    visitor: ['body']
-});
+  visitor: ['body']
+})
 astDefinationsMap.set('VariableDeclaration', {
-    visitor: ['declarations']
-});
+  visitor: ['declarations']
+})
 astDefinationsMap.set('VariableDeclarator', {
-    visitor: ['id', 'init']
-});
-astDefinationsMap.set('Identifier', {});
-astDefinationsMap.set('NumericLiteral', {});
+  visitor: ['id', 'init']
+})
+astDefinationsMap.set('Identifier', {})
+astDefinationsMap.set('NumericLiteral', {})
 
 function traverse(node, visitors) {
-    const defination = astDefinationsMap.get(node.type);
+  const defination = astDefinationsMap.get(node.type)
 
-    let visitorFuncs = visitors[node.type] || {};
+  let visitorFuncs = visitors[node.type] || {}
 
-    if(typeof visitorFuncs === 'function') {
-        visitorFuncs = {
-            enter: visitorFuncs
-        }
+  if (typeof visitorFuncs === 'function') {
+    visitorFuncs = {
+      enter: visitorFuncs
     }
+  }
 
-    visitorFuncs.enter && visitorFuncs.enter(node);
+  visitorFuncs.enter && visitorFuncs.enter(node)
 
-    if (defination.visitor) {
-        defination.visitor.forEach(key => {
-            const prop = node[key];
-            if (Array.isArray(prop)) { // 如果该属性是数组
-                prop.forEach(childNode => {
-                    traverse(childNode, visitors);
-                })
-            } else {
-                traverse(prop, visitors);
-            }
+  if (defination.visitor) {
+    defination.visitor.forEach((key) => {
+      const prop = node[key]
+      if (Array.isArray(prop)) {
+        // 如果该属性是数组
+        prop.forEach((childNode) => {
+          traverse(childNode, visitors)
         })
-    }
-    visitorFuncs.exit && visitorFuncs.exit(node);
+      } else {
+        traverse(prop, visitors)
+      }
+    })
+  }
+  visitorFuncs.exit && visitorFuncs.exit(node)
 }
 
 const ast = newParser.parse(`
     const a = 1;
-`);
+`)
 
 traverse(ast, {
-    Identifier: {
-        enter(node) {
-            console.log('enter');
-        },
-        exit(node) {
-            console.log('exit');
-            node.name = 'b';
-        }
+  Identifier: {
+    enter(node) {
+      console.log('enter')
+    },
+    exit(node) {
+      console.log('exit')
+      node.name = 'b'
     }
-});
+  }
+})
 
-console.log(JSON.stringify(ast, null, 2));
+console.log(JSON.stringify(ast, null, 2))

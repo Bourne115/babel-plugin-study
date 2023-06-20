@@ -1,5 +1,5 @@
 function minus(a, b) {
-    return a - b;
+  return a - b
 }
 
-minus(3, 4);
+minus(3, 4)

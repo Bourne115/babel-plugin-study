@@ -1,7 +1,7 @@
-const { transformFromAstSync } = require('@babel/core');
-const  parser = require('@babel/parser');
-const manglePlugin = require('./plugin/mangle');
-const compressPlugin = require('./plugin/compress');
+const { transformFromAstSync } = require('@babel/core')
+const parser = require('@babel/parser')
+const manglePlugin = require('./plugin/mangle')
+const compressPlugin = require('./plugin/compress')
 
 const sourceCode = `
     function func() {
@@ -17,24 +17,19 @@ const sourceCode = `
         }
     }
     func();
-`;
+`
 
 const ast = parser.parse(sourceCode, {
-    sourceType: 'unambiguous',
-    comments: true
-});
+  sourceType: 'unambiguous',
+  comments: true
+})
 
 const { code } = transformFromAstSync(ast, sourceCode, {
-    plugins: [
-        [manglePlugin], 
-        [compressPlugin]
-    ],
-    generatorOpts: {
-        comments: false,
-        // compact: true
-    }
-});
+  plugins: [[manglePlugin], [compressPlugin]],
+  generatorOpts: {
+    comments: false
+    // compact: true
+  }
+})
 
-console.log(code);
-
-
+console.log(code)

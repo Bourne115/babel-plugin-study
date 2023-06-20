@@ -6,8 +6,8 @@
  * @param {*} dirname  dirname 是目录名（不常用）
  */
 
-export default function(api, opts, dirname) {
+export default function (api, opts, dirname) {
   return {
-    inherits: parentPlugin,
+    inherits: parentPlugin
   }
 }

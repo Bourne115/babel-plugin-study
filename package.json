@@ -4,7 +4,7 @@
   "description": "学习babel插件",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest ./src/plugin/__tests__/parameters-insert-plugin.test.js"
   },
   "repository": {
     "type": "git",

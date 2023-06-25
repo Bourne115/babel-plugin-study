@@ -4,7 +4,8 @@
   "description": "学习babel插件",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./src/plugin/__tests__/parameters-insert-plugin.test.js"
+    "test": "jest ./src/plugin/__tests__/parameters-insert-plugin.test.js",
+    "babel": "npx babel lib --out-dir dist"
   },
   "repository": {
     "type": "git",
@@ -17,14 +18,27 @@
   },
   "homepage": "https://github.com/Bourne115/babel-plugin-study#readme",
   "devDependencies": {
+    "@babel/cli": "^7.22.5",
     "@babel/code-frame": "^7.16.7",
     "@babel/core": "^7.17.10",
     "@babel/generator": "^7.17.10",
+    "@babel/helper-module-imports": "^7.22.5",
+    "@babel/helper-plugin-utils": "^7.22.5",
     "@babel/parser": "^7.17.10",
+    "@babel/plugin-transform-react-jsx": "^7.22.5",
+    "@babel/plugin-transform-runtime": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
     "@babel/template": "^7.16.7",
     "@babel/traverse": "^7.17.10",
     "@babel/types": "^7.17.10",
     "@types/jest": "^29.5.2",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "^8.43.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "prettier": "2.8.8"
   },
   "dependencies": {

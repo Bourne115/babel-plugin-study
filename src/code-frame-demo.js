@@ -4,12 +4,12 @@ const sourceCode = `
    const a = 1 + 2;
    console.log(a);
 `
-
+console.log()
 const res = codeFrameColumns(
   sourceCode,
   {
-    start: { line: 2, column: 6 }
-    // end: { line: 3, column: 5 },
+    start: { line: 2, column: 6 },
+    end: { line: 3, column: 5 }
   },
   {
     highlightCode: true,
